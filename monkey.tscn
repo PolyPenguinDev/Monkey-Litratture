@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bydpww14a6hty"]
+
+[ext_resource type="Texture2D" uid="uid://dj6fl1ok81rb7" path="res://Sprites/monkey/frame1.png" id="1_iam0x"]
+[ext_resource type="Texture2D" uid="uid://dr781nxnf6y4t" path="res://Sprites/monkey/frame2.png" id="2_k8sda"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7tr4c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iam0x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k8sda")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Monkey" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7tr4c")
+frame_progress = 0.154962
