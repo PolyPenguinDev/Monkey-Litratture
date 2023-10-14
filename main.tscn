@@ -1,9 +1,64 @@
-[gd_scene load_steps=2 format=3 uid="uid://x30soxnyeeb8"]
+[gd_scene load_steps=8 format=3 uid="uid://x30soxnyeeb8"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_25qgj"]
 [ext_resource type="PackedScene" uid="uid://bydpww14a6hty" path="res://monkey.tscn" id="1_gogln"]
+[ext_resource type="PackedScene" uid="uid://bbjuu73os47ho" path="res://paper.tscn" id="2_ctnk5"]
+[ext_resource type="FontFile" uid="uid://bqdan2ixswh50" path="res://pixeltypewriter.ttf" id="4_688ny"]
+[ext_resource type="Texture2D" uid="uid://cmpaqe0mkum41" path="res://Sprites/paper/sell.png" id="5_w8pue"]
+[ext_resource type="Texture2D" uid="uid://p53mnn74dt1a" path="res://Sprites/paper/throwaway.png" id="6_wnmjp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_miid3"]
+font = ExtResource("4_688ny")
+font_size = 50
+font_color = Color(0.141176, 0.133333, 0.180392, 1)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_25qgj")
 
 [node name="Monkey" parent="." instance=ExtResource("1_gogln")]
-position = Vector2(411, 170)
+position = Vector2(308, 154)
 scale = Vector2(5, 5)
+
+[node name="Paper" parent="." instance=ExtResource("2_ctnk5")]
+visible = false
+position = Vector2(651, 298)
+scale = Vector2(5, 5)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 435.0
+offset_top = 88.0
+offset_right = 828.0
+offset_bottom = 609.0
+text = "ai text goes here! it is super cool the quick brown fox jumps over the lazy dog?<>1234567890()vs{}[]$x"
+label_settings = SubResource("LabelSettings_miid3")
+autowrap_mode = 3
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton" type="TextureButton" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 326.0
+offset_top = 563.0
+offset_right = 342.0
+offset_bottom = 579.0
+scale = Vector2(5, 5)
+texture_normal = ExtResource("5_w8pue")
+
+[node name="TextureButton2" type="TextureButton" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 886.0
+offset_top = 563.0
+offset_right = 902.0
+offset_bottom = 579.0
+scale = Vector2(5, 5)
+texture_normal = ExtResource("6_wnmjp")
+
+[connection signal="showpaper" from="Monkey" to="." method="_on_monkey_showpaper"]
+[connection signal="pressed" from="Control/TextureButton" to="." method="_on_texture_button_pressed"]
