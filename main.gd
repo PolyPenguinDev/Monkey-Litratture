@@ -90,5 +90,5 @@ func _on_texture_button_3_pressed():
 	currentmoney -= monkeycost
 	monkeycost *= 1.5
 	$Label2.text = "$"+str(currentmoney)
-	$Label2.text = "$"+str(monkeycost)
+	$Label3.text = "$"+str(monkeycost)
 	createnewmonkey()
