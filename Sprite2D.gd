@@ -14,22 +14,22 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	full += delta
-	if i > 6 and ((Input.is_action_pressed("click") and mousein)or Input.is_action_just_pressed("ui_accept")):
+	if i > 6 and ((Input.is_action_pressed("click") and mousein)):
 		p.position.x = -1
 		x = -1
 		p.position.y = 0
 		i = 1
 		emit_signal("start")
-	if full >= 0.4:
+	if full >= 2:
 		i+=1
 		print(i)
 		if i > 7:
 			if i == 8:
 				emit_signal("stop")
 			
-			full = full-0.4
+			full = full-2
 		else:
-			full = full-0.4
+			full = full-2
 			p.position.y-=1
 			x-=0.25
 			p.position.x = round(x)

@@ -1,5 +1,7 @@
 extends Node2D
-signal showpaper()
+signal showpaper(qual)
+var rng = RandomNumberGenerator.new()
+@onready var quality = rng.randf_range(0.0, 1.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,4 +19,4 @@ func _on_sprite_2d_stop():
 
 func _on_sprite_2d_start():
 	$AnimatedSprite2D.play("default")
-	emit_signal("showpaper")
+	emit_signal("showpaper", quality)
