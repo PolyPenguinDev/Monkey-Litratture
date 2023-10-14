@@ -1,19 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://x30soxnyeeb8"]
+[gd_scene load_steps=15 format=3 uid="uid://x30soxnyeeb8"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_25qgj"]
 [ext_resource type="PackedScene" uid="uid://bydpww14a6hty" path="res://monkey.tscn" id="1_gogln"]
 [ext_resource type="PackedScene" uid="uid://bbjuu73os47ho" path="res://paper.tscn" id="2_ctnk5"]
+[ext_resource type="Script" path="res://writer.gd" id="3_tlqwh"]
 [ext_resource type="FontFile" uid="uid://bqdan2ixswh50" path="res://pixeltypewriter.ttf" id="4_688ny"]
 [ext_resource type="Texture2D" uid="uid://cmpaqe0mkum41" path="res://Sprites/paper/sell.png" id="5_w8pue"]
+[ext_resource type="Texture2D" uid="uid://xjpu8yu2iv5r" path="res://Sprites/paper/reputaion.png" id="6_68vvg"]
 [ext_resource type="Texture2D" uid="uid://p53mnn74dt1a" path="res://Sprites/paper/throwaway.png" id="6_wnmjp"]
 [ext_resource type="Texture2D" uid="uid://b6kf0u0wsgcsy" path="res://Sprites/paper/money.png" id="7_ktd6j"]
 [ext_resource type="Texture2D" uid="uid://bviwppce20rey" path="res://Sprites/paper/buy.png" id="8_j53i8"]
 [ext_resource type="Texture2D" uid="uid://bvant4gyur5as" path="res://Sprites/paper/unbuy.png" id="9_pumbb"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_fa2fg"]
-font = ExtResource("4_688ny")
-font_size = 50
-font_color = Color(0.152941, 0.180392, 0.270588, 1)
+[ext_resource type="Texture2D" uid="uid://erxc8m0xtirh" path="res://Sprites/floor.png" id="12_gx7bl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_miid3"]
 font = ExtResource("4_688ny")
@@ -22,11 +20,50 @@ font_color = Color(0.901961, 0.921569, 0.839216, 1)
 outline_size = 20
 outline_color = Color(0.152941, 0.180392, 0.270588, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_fa2fg"]
+font = ExtResource("4_688ny")
+font_size = 50
+font_color = Color(0.152941, 0.180392, 0.270588, 1)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_25qgj")
 monkey = ExtResource("1_gogln")
 
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(683, 210)
+scale = Vector2(5, 5)
+texture = ExtResource("12_gx7bl")
+
 [node name="monkeys" type="Node2D" parent="."]
+script = ExtResource("3_tlqwh")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 169.0
+offset_top = 28.0
+offset_right = 1144.0
+offset_bottom = 81.0
+text = "$0.00"
+label_settings = SubResource("LabelSettings_miid3")
+autowrap_mode = 3
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 95.0
+offset_top = 705.0
+offset_right = 1070.0
+offset_bottom = 758.0
+text = "%100"
+label_settings = SubResource("LabelSettings_miid3")
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 400.0
+offset_top = 30.0
+offset_right = 1270.0
+offset_bottom = 85.0
+text = "$100.00"
+label_settings = SubResource("LabelSettings_miid3")
+horizontal_alignment = 2
+autowrap_mode = 3
 
 [node name="Paper" parent="." instance=ExtResource("2_ctnk5")]
 visible = false
@@ -43,29 +80,15 @@ text = "<this is placeholder text for before the ai is made> QUALITY:"
 label_settings = SubResource("LabelSettings_fa2fg")
 autowrap_mode = 3
 
-[node name="Label2" type="Label" parent="."]
-offset_left = 169.0
-offset_top = 28.0
-offset_right = 1144.0
-offset_bottom = 81.0
-text = "$0"
-label_settings = SubResource("LabelSettings_miid3")
-autowrap_mode = 3
-
-[node name="Label3" type="Label" parent="."]
-offset_left = 169.0
-offset_top = 28.0
-offset_right = 1057.0
-offset_bottom = 81.0
-text = "$100"
-label_settings = SubResource("LabelSettings_miid3")
-horizontal_alignment = 2
-autowrap_mode = 3
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(85, 45)
 scale = Vector2(5, 5)
 texture = ExtResource("7_ktd6j")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(45, 720)
+scale = Vector2(5, 5)
+texture = ExtResource("6_68vvg")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -76,29 +99,29 @@ offset_bottom = 40.0
 [node name="TextureButton" type="TextureButton" parent="Control"]
 visible = false
 layout_mode = 0
-offset_left = 326.0
-offset_top = 563.0
-offset_right = 342.0
-offset_bottom = 579.0
+offset_left = 325.0
+offset_top = 650.0
+offset_right = 341.0
+offset_bottom = 666.0
 scale = Vector2(5, 5)
 texture_normal = ExtResource("5_w8pue")
 
 [node name="TextureButton2" type="TextureButton" parent="Control"]
 visible = false
 layout_mode = 0
-offset_left = 886.0
-offset_top = 563.0
-offset_right = 902.0
-offset_bottom = 579.0
+offset_left = 885.0
+offset_top = 650.0
+offset_right = 901.0
+offset_bottom = 666.0
 scale = Vector2(5, 5)
 texture_normal = ExtResource("6_wnmjp")
 
 [node name="TextureButton3" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = 1060.0
-offset_top = 10.0
-offset_right = 1076.0
-offset_bottom = 26.0
+offset_left = 1275.0
+offset_top = 5.0
+offset_right = 1291.0
+offset_bottom = 21.0
 scale = Vector2(5, 5)
 texture_normal = ExtResource("8_j53i8")
 texture_disabled = ExtResource("9_pumbb")

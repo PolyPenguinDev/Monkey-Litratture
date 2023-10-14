@@ -19,4 +19,4 @@ func _on_sprite_2d_stop():
 
 func _on_sprite_2d_start():
 	$AnimatedSprite2D.play("default")
-	emit_signal("showpaper", quality)
+	emit_signal("showpaper", quality+rng.randf_range(-0.3, 0.3))

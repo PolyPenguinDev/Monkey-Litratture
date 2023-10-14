@@ -34,6 +34,7 @@ script = ExtResource("2_0ki1s")
 polygon = PackedVector2Array(-8, 16, -7, 15, -7, 12, -8, 9, -9, 7, -10, 5, -11, 4, -12, 4, -13, 5, -13, 8, -12, 10, -11, 13, -10, 15, -9, 16)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 9)
 sprite_frames = SubResource("SpriteFrames_7tr4c")
 frame_progress = 0.703145
 
