@@ -28,9 +28,10 @@ func generate(quality, numOfChars):
 		quality = 1
 	var maxContext = floor(quality * 4) + 1
 	var low = myload("res://databases/characterDatabase"+str(maxContext)+".json")
-	var high  = myload("res://databases/characterDatabase"+str(maxContext+1)+".json")
+	var high
 	var error = 99999999999
 	if (quality - (floor(quality * 4)/4)) != 0 and not quality == 1.0:
+		high  =myload("res://databases/characterDatabase"+str(maxContext+1)+".json")
 		error = 1/(quality - (floor(quality * 4)/4))
 	var text = "ACT I"
 	for i in numOfChars:

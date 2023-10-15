@@ -50,7 +50,7 @@ func createnewmonkey(qual):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Control/TextureButton3.disabled = true
-	createnewmonkey(1)
+	createnewmonkey(0.7)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
