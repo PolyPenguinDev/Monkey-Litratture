@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bydpww14a6hty"]
+[gd_scene load_steps=11 format=3 uid="uid://bydpww14a6hty"]
 
 [ext_resource type="Script" path="res://monkey.gd" id="1_7nm6i"]
 [ext_resource type="Texture2D" uid="uid://dj6fl1ok81rb7" path="res://Sprites/monkey/frame1.png" id="1_iam0x"]
 [ext_resource type="Texture2D" uid="uid://c4rt6x1d0ytrf" path="res://Sprites/monkey/paper.png" id="1_s6emi"]
 [ext_resource type="Script" path="res://Sprite2D.gd" id="2_0ki1s"]
 [ext_resource type="Texture2D" uid="uid://dr781nxnf6y4t" path="res://Sprites/monkey/frame2.png" id="2_k8sda"]
+[ext_resource type="FontFile" uid="uid://bqdan2ixswh50" path="res://pixeltypewriter.ttf" id="6_geo8f"]
+[ext_resource type="Texture2D" uid="uid://b6fcgpp4tswcv" path="res://Sprites/monkey/overlay.png" id="7_7eugg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7tr4c"]
 animations = [{
@@ -20,10 +22,24 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcnay"]
+size = Vector2(41, 46)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dpnd5"]
+font = ExtResource("6_geo8f")
+font_size = 50
+
 [node name="Monkey" type="Node2D"]
 script = ExtResource("1_7nm6i")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 46)
+scale = Vector2(5, 5)
+texture = ExtResource("7_7eugg")
+
 [node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(5, 5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
 position = Vector2(-10, 10)
@@ -34,11 +50,31 @@ script = ExtResource("2_0ki1s")
 polygon = PackedVector2Array(-8, 16, -7, 15, -7, 12, -8, 9, -9, 7, -10, 5, -11, 4, -12, 4, -13, 5, -13, 8, -12, 10, -11, 13, -10, 15, -9, 16)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 9)
+position = Vector2(0, 45)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_7tr4c")
 frame_progress = 0.703145
 
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(0, 45)
+scale = Vector2(5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("RectangleShape2D_pcnay")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -88.0
+offset_right = 110.0
+offset_bottom = -35.0
+text = "fgjd"
+label_settings = SubResource("LabelSettings_dpnd5")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_entered" from="Area2D" to="Area2D/Sprite2D" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="mouse_exited" from="Area2D" to="Area2D/Sprite2D" method="_on_area_2d_mouse_exited"]
 [connection signal="start" from="Area2D/Sprite2D" to="." method="_on_sprite_2d_start"]
 [connection signal="stop" from="Area2D/Sprite2D" to="." method="_on_sprite_2d_stop"]
+[connection signal="mouse_entered" from="Area2D2" to="." method="_on_area_2d_2_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D2" to="." method="_on_area_2d_2_mouse_exited"]

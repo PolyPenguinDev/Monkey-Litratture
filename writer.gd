@@ -1,44 +1,56 @@
 extends Node
-
+@onready var json = JSON.new()
 var contents
 var lastChar = ' '
 var characterDatabase = {}
+var rng = RandomNumberGenerator.new()
 
 func myload(path):
 	var file = FileAccess.open(path,FileAccess.READ)
-	var content = file.get_as_text()
+	var content = json.parse_string(str(file.get_as_text()))
+	'''var content = json.parse(path)'''
 	return content
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	contents = myload("res://database.txt")
-
-	for i in range(len(contents)):
-		if contents[i+1] == "🛑":
-			break
-
-		if not contents[i].to_lower() in characterDatabase:
-			characterDatabase[contents[i].to_lower()] = {"total":0}
-		if not contents[i+1].to_lower() in characterDatabase[contents[i].to_lower()]:
-			characterDatabase[contents[i].to_lower()][contents[i+1].to_lower()] = 0
-		characterDatabase[contents[i].to_lower()][contents[i+1].to_lower()] += 1
-		characterDatabase[contents[i].to_lower()]["total"] += 1
-	
-
-
+	pass
+func slice(string, from, to):
+	var out = ""
+	for i in len(string):
+		if not (i < from or i > to):
+			out += string[i]
+	return out
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func generate(characters):
+func generate(quality, numOfChars):
+	if quality < 0:
+		quality = 0
+	elif quality > 1:
+		quality = 1
+	var maxContext = floor(quality * 4) + 1
+	var low = myload("res://databases/characterDatabase"+str(maxContext)+".json")
+	var high  = myload("res://databases/characterDatabase"+str(maxContext+1)+".json")
+	var error = 99999999999
+	if (quality - (floor(quality * 4)/4)) != 0 and not quality == 1.0:
+		error = 1/(quality - (floor(quality * 4)/4))
+	var text = "ACT I"
+	for i in numOfChars:
+		var context = maxContext
+		var qual = low
+		if rng.randi_range(1, round(error))==1:
+			context += 1
+			qual = high
+		var lt = len(text)
+		text += generateOne(context, slice(text, lt - context, lt),qual)[0]
+	return text.replace("é", "e").replace("`","'")
+func generateOne(maxContext, context, characterDatabase):
 	var text = ""
-	for j in characters:
-		text += lastChar
-		if len(text)%100 == 0:
-			text += "\n"
-		var randAmount = randi_range(1,characterDatabase[lastChar]['total'])
-		for i in characterDatabase[lastChar].keys():
-			if i == "total":
-				continue
-			randAmount -= characterDatabase[lastChar][i]
-			if randAmount <= 0:
-				lastChar = i
-				break
-	return text
+	var randAmount = rng.randi_range(1, characterDatabase[context]['total'])
+	for i in characterDatabase[context].keys():
+		if i == "total":
+			continue
+		randAmount -= characterDatabase[context][i]
+		if randAmount <= 0:
+			context = slice(context,1,maxContext) + i
+			break
+	text += context[-1]
+	return [text, context]

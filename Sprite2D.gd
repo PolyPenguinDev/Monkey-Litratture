@@ -15,14 +15,13 @@ func _ready():
 func _process(delta):
 	full += delta
 	if i > 6 and ((Input.is_action_pressed("click") and mousein)):
-		p.position.x = -1
+		p.position.x = 0
 		x = -1
 		p.position.y = 0
 		i = 1
 		emit_signal("start")
 	if full >= 2:
 		i+=1
-		print(i)
 		if i > 7:
 			if i == 8:
 				emit_signal("stop")
@@ -30,9 +29,9 @@ func _process(delta):
 			full = full-2
 		else:
 			full = full-2
-			p.position.y-=1
+			p.position.y-=5
 			x-=0.25
-			p.position.x = round(x)
+			p.position.x = round(x)*5
 
 
 func _on_area_2d_mouse_entered():

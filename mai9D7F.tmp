@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://x30soxnyeeb8"]
+[gd_scene load_steps=17 format=3 uid="uid://x30soxnyeeb8"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_25qgj"]
 [ext_resource type="PackedScene" uid="uid://bydpww14a6hty" path="res://monkey.tscn" id="1_gogln"]
@@ -13,9 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bviwppce20rey" path="res://Sprites/paper/buy.png" id="8_j53i8"]
 [ext_resource type="Texture2D" uid="uid://bvant4gyur5as" path="res://Sprites/paper/unbuy.png" id="9_pumbb"]
 [ext_resource type="Texture2D" uid="uid://erxc8m0xtirh" path="res://Sprites/floor.png" id="12_gx7bl"]
-[ext_resource type="Texture2D" uid="uid://dt1iy46xpeq7u" path="res://Sprites/monkey/turn left.png" id="13_q84w6"]
 [ext_resource type="Texture2D" uid="uid://b1b32c0xflb6t" path="res://Sprites/locks.png" id="14_jbqra"]
-[ext_resource type="Texture2D" uid="uid://lgpymnj80srn" path="res://Sprites/monkey/turn right.png" id="14_k1uk3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_miid3"]
 font = ExtResource("4_688ny")
@@ -114,16 +112,11 @@ scale = Vector2(5, 5)
 visible = false
 offset_left = 435.0
 offset_top = 88.0
-offset_right = 835.0
+offset_right = 828.0
 offset_bottom = 609.0
-text = "<this is placeholder text for before the ai is made> QUALITY:
-d
-d
-d
-d
-"
+text = "<this is placeholder text for before the ai is made> QUALITY:"
 label_settings = SubResource("LabelSettings_fa2fg")
-autowrap_mode = 1
+autowrap_mode = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(85, 45)
@@ -161,26 +154,6 @@ offset_bottom = 666.0
 scale = Vector2(5, 5)
 texture_normal = ExtResource("6_wnmjp")
 
-[node name="TextureButton4" type="TextureButton" parent="Control"]
-visible = false
-layout_mode = 0
-offset_left = 270.0
-offset_top = 300.0
-offset_right = 295.0
-offset_bottom = 335.0
-scale = Vector2(5, 5)
-texture_normal = ExtResource("13_q84w6")
-
-[node name="TextureButton5" type="TextureButton" parent="Control"]
-visible = false
-layout_mode = 0
-offset_left = 875.0
-offset_top = 300.0
-offset_right = 899.0
-offset_bottom = 333.0
-scale = Vector2(5, 5)
-texture_normal = ExtResource("14_k1uk3")
-
 [node name="TextureButton3" type="TextureButton" parent="Control"]
 layout_mode = 0
 offset_left = 1275.0
@@ -194,6 +167,4 @@ texture_disabled = ExtResource("9_pumbb")
 [connection signal="pressed" from="lock/TextureButton4" to="." method="_on_texture_button_4_pressed"]
 [connection signal="pressed" from="Control/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="Control/TextureButton2" to="." method="_on_texture_button_2_pressed"]
-[connection signal="pressed" from="Control/TextureButton4" to="." method="left"]
-[connection signal="pressed" from="Control/TextureButton5" to="." method="right"]
 [connection signal="pressed" from="Control/TextureButton3" to="." method="_on_texture_button_3_pressed"]
